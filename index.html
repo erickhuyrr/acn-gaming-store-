@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACN Store – Nepal's #1 Gaming Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold2: #FFA500;
+    --cyan: #00FFFF;
+    --bg: #080C14;
+    --bg2: #0D1422;
+    --bg3: #111827;
+    --red: #FF2D55;
+    --text: #E8EAF0;
+    --muted: #6B7A99;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 40px;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,215,0,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.3rem; font-weight: 900;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000; padding: 9px 22px; border-radius: 4px;
+    font-family: 'Orbitron', monospace; font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 1px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,0,0.4); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 24px 80px;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(255,165,0,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,215,0,0.1);
+    border: 1px solid rgba(255,215,0,0.35);
+    color: var(--gold);
+    font-size: 0.72rem; letter-spacing: 3px; font-weight: 700;
+    text-transform: uppercase; padding: 6px 18px; border-radius: 2px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--gold), var(--gold2), var(--red));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--cyan); font-weight: 300; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 20px;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+
+  .hero-desc {
+    max-width: 560px; margin: 0 auto 40px;
+    color: var(--muted); font-size: 1.05rem; line-height: 1.7;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000; padding: 14px 36px; border-radius: 4px;
+    font-family: 'Orbitron', monospace; font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 1.5px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(255,165,0,0.45); }
+
+  .btn-secondary {
+    border: 1px solid rgba(0,255,255,0.4);
+    color: var(--cyan); padding: 14px 36px; border-radius: 4px;
+    font-family: 'Orbitron', monospace; font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 1.5px; text-decoration: none;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: rgba(0,255,255,0.08); transform: translateY(-3px); }
+
+  /* Stats bar */
+  .stats-bar {
+    position: relative;
+    display: flex; justify-content: center; gap: 0;
+    border-top: 1px solid rgba(255,215,0,0.1);
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+    background: rgba(13,20,34,0.7);
+    margin-top: 60px;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .stat-item {
+    flex: 1; max-width: 220px; padding: 32px 24px; text-align: center;
+    border-right: 1px solid rgba(255,215,0,0.08);
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem; font-weight: 900;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { color: var(--muted); font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── PRODUCTS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    display: inline-block; color: var(--gold);
+    font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 12px;
+  }
+  .section-tag::before { content: '// '; opacity: 0.5; }
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900;
+  }
+  .section-title span { color: var(--gold); }
+
+  .products { padding: 100px 40px; background: var(--bg); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; max-width: 1200px; margin: 0 auto;
+  }
+
+  .product-card {
+    background: var(--bg2);
+    border: 1px solid rgba(255,215,0,0.08);
+    border-radius: 8px; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer; position: relative;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,165,0,0.05), transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,215,0,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(255,165,0,0.1);
+  }
+  .product-card:hover::before { opacity: 1; }
+
+  .card-header {
+    padding: 32px 28px 20px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+
+  .card-icon {
+    width: 56px; height: 56px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    background: rgba(255,215,0,0.1);
+    border: 1px solid rgba(255,215,0,0.2);
+  }
+
+  .card-badge {
+    background: rgba(255,45,85,0.15);
+    border: 1px solid rgba(255,45,85,0.3);
+    color: var(--red); font-size: 0.65rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px; font-weight: 700;
+  }
+  .card-badge.hot { background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.3); color: var(--gold2); }
+  .card-badge.new { background: rgba(0,255,255,0.1); border-color: rgba(0,255,255,0.3); color: var(--cyan); }
+
+  .card-body { padding: 0 28px 28px; }
+  .card-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem; font-weight: 700; margin-bottom: 8px;
+  }
+  .card-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+
+  .card-prices { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .price-tag {
+    background: rgba(255,215,0,0.08);
+    border: 1px solid rgba(255,215,0,0.15);
+    color: var(--gold); font-size: 0.78rem; font-weight: 700;
+    padding: 5px 12px; border-radius: 3px;
+  }
+
+  .card-btn {
+    width: 100%; padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(255,215,0,0.3);
+    color: var(--gold); font-family: 'Orbitron', monospace;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: block; text-align: center;
+    position: relative; z-index: 2;
+  }
+  .card-btn:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000; border-color: transparent;
+  }
+
+  /* ── PROCESS ── */
+  .process { padding: 50px 40px; background: var(--bg3); }
+
+  .process-steps {
+    display: flex; gap: 0;
+    max-width: 900px; margin: 0 auto;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 32px; left: 15%; right: 15%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .step {
+    flex: 1; text-align: center; padding: 0 20px;
+  }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--bg2);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+    font-family: 'Orbitron', monospace; font-size: 0.85rem; font-weight: 900;
+    color: var(--gold); position: relative; z-index: 1;
+    box-shadow: 0 0 14px rgba(255,215,0,0.2);
+  }
+  .step-title { font-family: 'Orbitron', monospace; font-size: 0.72rem; font-weight: 700; margin-bottom: 6px; }
+  .step-desc { color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
+
+  /* ── SOCIAL / CONTACT ── */
+  .contact { padding: 100px 40px; background: var(--bg); }
+
+  .contact-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Orbitron', monospace; font-size: 1.4rem;
+    font-weight: 900; margin-bottom: 20px;
+  }
+  .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+
+  .contact-detail {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid rgba(255,215,0,0.08);
+  }
+  .contact-detail:last-of-type { border-bottom: none; }
+  .detail-icon { font-size: 1.2rem; }
+  .detail-label { color: var(--muted); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; }
+  .detail-value { color: var(--text); font-weight: 600; }
+
+  .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .social-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border-radius: 6px;
+    background: var(--bg2); border: 1px solid rgba(255,215,0,0.08);
+    text-decoration: none; color: var(--text);
+    transition: all 0.2s; font-weight: 600; font-size: 0.9rem;
+  }
+  .social-btn:hover { border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.05); transform: translateY(-2px); }
+  .social-btn .s-icon { font-size: 1.4rem; }
+  .social-btn .s-name { font-size: 0.85rem; }
+  .social-btn .s-tag { font-size: 0.7rem; color: var(--muted); }
+
+  /* ── REVIEWS ── */
+  .reviews { padding: 100px 40px; background: var(--bg3); }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+
+  .review-card {
+    background: var(--bg2); border: 1px solid rgba(255,215,0,0.08);
+    border-radius: 8px; padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .review-card:hover { border-color: rgba(255,215,0,0.25); }
+
+  .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 14px; }
+  .review-text { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #000; font-size: 1rem;
+  }
+  .reviewer-name { font-weight: 700; font-size: 0.9rem; }
+  .reviewer-loc { color: var(--muted); font-size: 0.75rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid rgba(255,215,0,0.1);
+    padding: 48px 40px 32px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 900;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .footer-tagline { color: var(--muted); font-size: 0.88rem; margin-bottom: 32px; }
+  .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { color: var(--muted); font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; }
+  .footer-copy span { color: var(--gold); }
+
+  /* ── FLOATING WA BUTTON ── */
+  .wa-float {
+    position: fixed; bottom: 30px; right: 30px; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse 2.5s infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.6); }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: rgba(255,215,0,0.07);
+    border-top: 1px solid rgba(255,215,0,0.15);
+    border-bottom: 1px solid rgba(255,215,0,0.15);
+    padding: 12px 0; overflow: hidden; white-space: nowrap;
+  }
+  .ticker {
+    display: inline-block;
+    animation: ticker 25s linear infinite;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .ticker span { margin: 0 40px; }
+  .ticker span::before { content: '⬡ '; opacity: 0.5; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.5); }
+    50%       { box-shadow: 0 8px 32px rgba(37,211,102,0.8); }
+  }
+
+  /* ── PRICE SECTION (TAB STYLE) ── */
+  .price-section { padding: 100px 40px; background: var(--bg); }
+  .price-section.alt { background: var(--bg3); }
+
+  .price-tabs-wrap { max-width: 860px; margin: 0 auto; }
+
+  /* Tab buttons */
+  .tab-btns {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 32px;
+  }
+  .tab-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 40px;
+    border: 1px solid rgba(0,200,255,0.2);
+    background: transparent; color: var(--muted);
+    font-family: 'Rajdhani', sans-serif; font-size: 0.88rem;
+    font-weight: 700; letter-spacing: 1px; cursor: pointer;
+    transition: all 0.22s;
+  }
+  .tab-btn:hover { border-color: rgba(0,200,255,0.5); color: #00C8FF; }
+  .tab-btn.active {
+    background: linear-gradient(135deg, rgba(0,200,255,0.18), rgba(0,120,255,0.12));
+    border-color: #00C8FF; color: #00C8FF;
+    box-shadow: 0 0 18px rgba(0,200,255,0.2);
+  }
+  .tab-btn .tb-icon { font-size: 1.1rem; }
+
+  /* Tab panels */
+  .tab-panel { display: none; animation: fadeUp 0.3s ease both; }
+  .tab-panel.active { display: block; }
+
+  /* Panel card */
+  .panel-card {
+    background: rgba(10,18,32,0.9);
+    border: 1px solid rgba(0,200,255,0.15);
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0,200,255,0.05);
+  }
+
+  .panel-head {
+    display: flex; align-items: center; gap: 16px;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(0,80,200,0.06));
+    border-bottom: 1px solid rgba(0,200,255,0.12);
+  }
+  .panel-head-icon { font-size: 2rem; }
+  .panel-head-title {
+    font-family: 'Orbitron', monospace; font-size: 1rem;
+    font-weight: 900; color: #00C8FF;
+  }
+  .panel-head-sub { color: var(--muted); font-size: 0.75rem; margin-top: 3px; }
+  .panel-head-badge {
+    margin-left: auto;
+    background: rgba(0,200,255,0.12); border: 1px solid rgba(0,200,255,0.25);
+    color: #00C8FF; font-size: 0.65rem; letter-spacing: 2px;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    font-weight: 700;
+  }
+
+  /* Price rows */
+  .price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.035);
+    transition: background 0.15s;
+  }
+  .price-row:last-child { border-bottom: none; }
+
+  .price-row-diamond { color: var(--text); font-weight: 600; font-size: 0.93rem; }
+  .price-row-rs {
+    font-family: 'Orbitron', monospace; font-size: 0.82rem; font-weight: 700;
+    color: #00C8FF;
+    background: rgba(0,200,255,0.07);
+    border: 1px solid rgba(0,200,255,0.2);
+    padding: 4px 14px; border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* Buyable hover */
+  .price-row.buyable { cursor: pointer; }
+  .price-row.buyable:hover { background: rgba(0,200,255,0.05); }
+  .price-row.buyable:hover .price-row-rs {
+    background: linear-gradient(135deg, #00C8FF, #0078FF);
+    color: #000; border-color: transparent;
+  }
+  .buy-hint {
+    display: inline-block; font-size: 0.58rem; letter-spacing: 1px;
+    color: var(--muted); opacity: 0; transition: opacity 0.2s;
+    margin-left: 4px; vertical-align: middle;
+  }
+  .price-row.buyable:hover .buy-hint { opacity: 1; color: #000; }
+
+  /* Divider for passes */
+  .ptable-divider {
+    margin: 4px 28px;
+    border: none; border-top: 1px solid rgba(0,200,255,0.12);
+    position: relative;
+  }
+  .ptable-divider::after {
+    content: 'PASSES';
+    position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+    background: #0A1220; padding: 0 12px;
+    color: #00C8FF; font-size: 0.62rem; letter-spacing: 2px; font-weight: 700;
+  }
+  .price-row.pass .price-row-diamond { color: #7dd3fc; }
+
+  /* 2-column layout for long lists */
+  .price-two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .price-two-col .price-row { border-right: 1px solid rgba(255,255,255,0.03); }
+  .price-two-col .price-row:nth-child(even) { border-right: none; }
+
+  /* Prime plans */
+  .prime-plans {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 16px; padding: 24px 28px;
+  }
+  .prime-plan {
+    border: 1px solid rgba(0,200,255,0.15);
+    border-radius: 10px; padding: 22px 16px; text-align: center;
+    background: rgba(0,200,255,0.03); transition: all 0.22s; cursor: pointer;
+  }
+  .prime-plan:hover { border-color: #00C8FF; background: rgba(0,200,255,0.08); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,200,255,0.15); }
+  .prime-plan.featured { border-color: rgba(0,200,255,0.4); background: rgba(0,200,255,0.07); }
+  .prime-duration { font-family: 'Orbitron', monospace; font-size: 0.7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .prime-price { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 900; color: #00C8FF; }
+  .prime-features { margin-top: 14px; }
+  .prime-feature { color: var(--muted); font-size: 0.72rem; padding: 3px 0; }
+  .prime-feature::before { content: '✓ '; color: #4ade80; }
+  .prime-tap { margin-top: 12px; color: #00C8FF; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.6; }
+
+  /* Apple grid */
+  .apple-grid {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+    padding: 24px 28px;
+  }
+  .apple-card {
+    background: rgba(0,200,255,0.05);
+    border: 1px solid rgba(0,200,255,0.15);
+    border-radius: 10px; padding: 18px 8px;
+    text-align: center; transition: all 0.22s; cursor: pointer;
+  }
+  .apple-card:hover { background: rgba(0,200,255,0.12); border-color: #00C8FF; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,200,255,0.2); }
+  .apple-card .a-amt { font-family: 'Orbitron', monospace; font-size: 1.05rem; font-weight: 900; color: #00C8FF; }
+  .apple-card .a-label { color: var(--muted); font-size: 0.65rem; margin-top: 4px; }
+
+  /* Panel footer */
+  .panel-footer {
+    padding: 18px 28px;
+    border-top: 1px solid rgba(0,200,255,0.1);
+    background: rgba(0,200,255,0.03);
+  }
+  .panel-footer-btn {
+    width: 100%; padding: 13px;
+    background: linear-gradient(135deg, rgba(0,200,255,0.15), rgba(0,120,255,0.1));
+    border: 1px solid rgba(0,200,255,0.35); color: #00C8FF;
+    font-family: 'Orbitron', monospace; font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 1.5px; border-radius: 6px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .panel-footer-btn:hover {
+    background: linear-gradient(135deg, #00C8FF, #0078FF);
+    color: #000; border-color: transparent;
+    box-shadow: 0 8px 24px rgba(0,200,255,0.35);
+  }
+
+  /* Buyable rows - old names kept for modal compat */
+  .price-row-diamond span { color: var(--cyan); font-size: 0.78rem; margin-left: 6px; }
+
+
+
+  /* Order Modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: var(--bg2);
+    border: 1px solid rgba(255,215,0,0.35);
+    border-radius: 14px; padding: 36px 28px;
+    max-width: 380px; width: 100%; text-align: center;
+    animation: fadeUp 0.25s ease both;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 50px rgba(255,165,0,0.12);
+  }
+  .modal-icon { font-size: 2.8rem; margin-bottom: 8px; }
+  .modal-game { color: var(--muted); font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 10px; }
+  .modal-item {
+    font-family: 'Orbitron', monospace; font-size: 1.2rem;
+    font-weight: 900; color: var(--text); margin-bottom: 8px;
+  }
+  .modal-price {
+    font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  .modal-msg {
+    color: var(--muted); font-size: 0.85rem; line-height: 1.65;
+    margin-bottom: 26px;
+    background: rgba(255,215,0,0.04); border: 1px solid rgba(255,215,0,0.1);
+    border-radius: 8px; padding: 12px 16px;
+  }
+  .modal-btns { display: flex; gap: 10px; }
+  .modal-confirm {
+    flex: 1; padding: 14px;
+    background: linear-gradient(135deg, #00C8FF, #0078FF);
+    color: #000; border: none; border-radius: 7px;
+    font-family: 'Orbitron', monospace; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 1px; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .modal-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,200,255,0.45); }
+  .modal-cancel {
+    padding: 14px 18px; background: transparent;
+    color: var(--muted); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 7px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+  }
+  .modal-cancel:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat-item { max-width: 50%; border-right: 1px solid rgba(255,215,0,0.08); }
+    .process-steps { flex-direction: column; gap: 40px; }
+    .process-steps::before { display: none; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .products, .process, .contact, .reviews, .price-section { padding: 70px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .apple-grid { grid-template-columns: repeat(4,1fr); }
+    .prime-plans { grid-template-columns: 1fr; }
+    .price-tables-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="https://raw.githubusercontent.com/erickhuyrr/acn-gaming-store-/main/profilepic/WhatsApp%20Image%202026-03-04%20at%201.45.24%20PM.jpeg" style="height:38px;width:38px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);" onerror="this.style.display='none'">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5f/PUBG_Mobile_logo.png/120px-PUBG_Mobile_logo.png" style="height:32px;object-fit:contain;" onerror="this.style.display='none'">
+    <div class="nav-logo">ACN STOREᴺᴾ</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#prices">Prices</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://api.whatsapp.com/send?phone=9779803289471" target="_blank" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top:68px;">
+  <div class="ticker">
+    <span>PUBG UC</span><span>PUBG Accounts</span><span>Mobile Legends Diamonds</span>
+    <span>FreeFire Diamonds</span><span>Amazon Prime</span><span>Apple Gift Cards</span>
+    <span>Nepal's #1 Gaming Store</span><span>Trusted Since Day 1</span>
+    <span>PUBG UC</span><span>PUBG Accounts</span><span>Mobile Legends Diamonds</span>
+    <span>FreeFire Diamonds</span><span>Amazon Prime</span><span>Apple Gift Cards</span>
+    <span>Nepal's #1 Gaming Store</span><span>Trusted Since Day 1</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div style="position:relative; z-index:1; width:100%;">
+    <div style="margin-bottom:20px;">
+      <img src="https://raw.githubusercontent.com/erickhuyrr/acn-gaming-store-/main/profilepic/WhatsApp%20Image%202026-03-04%20at%201.45.24%20PM.jpeg"
+        style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 30px rgba(255,215,0,0.4);"
+        onerror="this.style.display='none'">
+    </div>
+    <div class="hero-badge">🇳🇵 Kathmandu, Nepal · ACN Store Pvt. Ltd.</div>
+    <div class="hero-sub">Game On. Prices Down.</div>
+    <h1>Nepal's Hub for<br><span>PUBG, UC & Diamonds</span></h1>
+    <p class="hero-desc">Buy and sell PUBG accounts, UC, Mobile Legends diamonds, and more at the most affordable prices in Nepal. Trusted by thousands of gamers.</p>
+    <div class="hero-buttons">
+      <a href="https://api.whatsapp.com/send?phone=9779803289471" target="_blank" class="btn-primary">
+        📲 Order via WhatsApp
+      </a>
+      <a href="#products" class="btn-secondary">
+        🎮 Browse Products
+      </a>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">1000+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Trusted & Safe</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">⭐ 5.0</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PRICE LISTS -->
+<section class="price-section alt" id="prices">
+  <div class="section-header">
+    <div class="section-tag">Price List</div>
+    <h2 class="section-title">Our <span>Prices</span></h2>
+  </div>
+  <div class="price-tabs-wrap">
+
+    <!-- TAB BUTTONS -->
+    <div class="tab-btns">
+      <button class="tab-btn active" onclick="switchTab('ml')"><img src="https://play-lh.googleusercontent.com/TSkQyGmFwAMqUzSzfaqkJEHCJjPPD-xBEiuTEIZbZDyODnVGWfHMU8M8R4D9bvIm5A=s96" style="width:22px;height:22px;object-fit:contain;border-radius:4px;" onerror="this.outerHTML='🔮'"> Mobile Legends</button>
+      <button class="tab-btn" onclick="switchTab('ff')"><img src="https://img.icons8.com/color/48/free-fire.png" style="width:22px;height:22px;object-fit:contain;border-radius:4px;" onerror="this.outerHTML='🔥'"> Free Fire</button>
+      <button class="tab-btn" onclick="switchTab('prime')"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/240px-Amazon_Prime_Video_logo.svg.png" style="width:22px;height:22px;object-fit:contain;border-radius:4px;"> Amazon Prime</button>
+      <button class="tab-btn" onclick="switchTab('apple')"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/120px-Apple_logo_black.svg.png" style="width:18px;height:22px;object-fit:contain;filter:invert(1);"> Apple Gift Card</button>
+    </div>
+
+    <!-- MOBILE LEGENDS TAB -->
+    <div class="tab-panel active" id="tab-ml">
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-head-icon"><img src="https://play-lh.googleusercontent.com/TSkQyGmFwAMqUzSzfaqkJEHCJjPPD-xBEiuTEIZbZDyODnVGWfHMU8M8R4D9bvIm5A=s96" style="width:48px;height:48px;object-fit:contain;border-radius:8px;" onerror="this.outerHTML='🔮'"></div>
+          <div>
+            <div class="panel-head-title">Mobile Legends: Bang Bang</div>
+            <div class="panel-head-sub">Diamond Top-Up · Nepal Prices (RS) · Tap any row to order</div>
+          </div>
+          <div class="panel-head-badge">MLBB</div>
+        </div>
+        <div class="price-two-col">
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '84 Diamonds', 'RS 180')"><span class="price-row-diamond">84 Diamonds</span><span class="price-row-rs">RS 180 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '172 Diamonds', 'RS 370')"><span class="price-row-diamond">172 Diamonds</span><span class="price-row-rs">RS 370 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '260 Diamonds', 'RS 570')"><span class="price-row-diamond">260 Diamonds</span><span class="price-row-rs">RS 570 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '344 Diamonds', 'RS 730')"><span class="price-row-diamond">344 Diamonds</span><span class="price-row-rs">RS 730 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '516 Diamonds', 'RS 1,080')"><span class="price-row-diamond">516 Diamonds</span><span class="price-row-rs">RS 1,080 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '706 Diamonds', 'RS 1,430')"><span class="price-row-diamond">706 Diamonds</span><span class="price-row-rs">RS 1,430 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '1,346 Diamonds', 'RS 2,650')"><span class="price-row-diamond">1,346 Diamonds</span><span class="price-row-rs">RS 2,650 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '1,825 Diamonds', 'RS 3,450')"><span class="price-row-diamond">1,825 Diamonds</span><span class="price-row-rs">RS 3,450 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '2,195 Diamonds', 'RS 4,300')"><span class="price-row-diamond">2,195 Diamonds</span><span class="price-row-rs">RS 4,300 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '3,688 Diamonds', 'RS 7,000')"><span class="price-row-diamond">3,688 Diamonds</span><span class="price-row-rs">RS 7,000 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '5,532 Diamonds', 'RS 10,500')"><span class="price-row-diamond">5,532 Diamonds</span><span class="price-row-rs">RS 10,500 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔮 Mobile Legends', '9,288 Diamonds', 'RS 17,000')"><span class="price-row-diamond">9,288 Diamonds</span><span class="price-row-rs">RS 17,000 <span class="buy-hint">Tap</span></span></div>
+        </div>
+        <hr class="ptable-divider">
+        <div class="price-row buyable pass" onclick="buyItem('🔮 Mobile Legends', 'Weekly Diamond Pass', 'RS 250')"><span class="price-row-diamond">Weekly Diamond Pass</span><span class="price-row-rs">RS 250 <span class="buy-hint">Tap</span></span></div>
+        <div class="price-row buyable pass" onclick="buyItem('🔮 Mobile Legends', 'Twilight Pass', 'RS 1,400')"><span class="price-row-diamond">Twilight Pass</span><span class="price-row-rs">RS 1,400 <span class="buy-hint">Tap</span></span></div>
+        <div class="panel-footer">
+          <button class="panel-footer-btn" onclick="window.open('https://api.whatsapp.com/send?phone=9779803289471','_blank')">💬 Order ML Diamonds on WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREE FIRE TAB -->
+    <div class="tab-panel" id="tab-ff">
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-head-icon"><img src="https://img.icons8.com/color/96/free-fire.png" style="width:48px;height:48px;object-fit:contain;border-radius:8px;" onerror="this.outerHTML='🔥'"></div>
+          <div>
+            <div class="panel-head-title">Free Fire Diamonds</div>
+            <div class="panel-head-sub">Diamond Top-Up · Nepal Prices (RS) · Tap any row to order</div>
+          </div>
+          <div class="panel-head-badge">FF</div>
+        </div>
+        <div class="price-two-col">
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '115 Diamonds', 'RS 100')"><span class="price-row-diamond">115 Diamonds</span><span class="price-row-rs">RS 100 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '240 Diamonds', 'RS 200')"><span class="price-row-diamond">240 Diamonds</span><span class="price-row-rs">RS 200 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '480 Diamonds', 'RS 400')"><span class="price-row-diamond">480 Diamonds</span><span class="price-row-rs">RS 400 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '610 Diamonds', 'RS 500')"><span class="price-row-diamond">610 Diamonds</span><span class="price-row-rs">RS 500 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '850 Diamonds', 'RS 670')"><span class="price-row-diamond">850 Diamonds</span><span class="price-row-rs">RS 670 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '965 Diamonds', 'RS 800')"><span class="price-row-diamond">965 Diamonds</span><span class="price-row-rs">RS 800 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '1,090 Diamonds', 'RS 860')"><span class="price-row-diamond">1,090 Diamonds</span><span class="price-row-rs">RS 860 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '1,240 Diamonds', 'RS 950')"><span class="price-row-diamond">1,240 Diamonds</span><span class="price-row-rs">RS 950 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '1,850 Diamonds', 'RS 1,400')"><span class="price-row-diamond">1,850 Diamonds</span><span class="price-row-rs">RS 1,400 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '2,530 Diamonds', 'RS 1,900')"><span class="price-row-diamond">2,530 Diamonds</span><span class="price-row-rs">RS 1,900 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '3,770 Diamonds', 'RS 2,800')"><span class="price-row-diamond">3,770 Diamonds</span><span class="price-row-rs">RS 2,800 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '5,060 Diamonds', 'RS 3,750')"><span class="price-row-diamond">5,060 Diamonds</span><span class="price-row-rs">RS 3,750 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '6,300 Diamonds', 'RS 4,700')"><span class="price-row-diamond">6,300 Diamonds</span><span class="price-row-rs">RS 4,700 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '7,590 Diamonds', 'RS 5,600')"><span class="price-row-diamond">7,590 Diamonds</span><span class="price-row-rs">RS 5,600 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '10,120 Diamonds', 'RS 7,500')"><span class="price-row-diamond">10,120 Diamonds</span><span class="price-row-rs">RS 7,500 <span class="buy-hint">Tap</span></span></div>
+          <div class="price-row buyable" onclick="buyItem('🔥 Free Fire', '12,650 Diamonds', 'RS 9,500')"><span class="price-row-diamond">12,650 Diamonds</span><span class="price-row-rs">RS 9,500 <span class="buy-hint">Tap</span></span></div>
+        </div>
+        <hr class="ptable-divider">
+        <div class="price-row buyable pass" onclick="buyItem('🔥 Free Fire', 'Weekly / Level Up Pass', 'RS 200')"><span class="price-row-diamond">Weekly / Level Up Pass</span><span class="price-row-rs">RS 200 <span class="buy-hint">Tap</span></span></div>
+        <div class="price-row buyable pass" onclick="buyItem('🔥 Free Fire', 'Monthly / Level Up Pass', 'RS 1,000')"><span class="price-row-diamond">Monthly / Level Up Pass</span><span class="price-row-rs">RS 1,000 <span class="buy-hint">Tap</span></span></div>
+        <div class="panel-footer">
+          <button class="panel-footer-btn" onclick="window.open('https://api.whatsapp.com/send?phone=9779803289471','_blank')">💬 Order FF Diamonds on WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMAZON PRIME TAB -->
+    <div class="tab-panel" id="tab-prime">
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-head-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/240px-Amazon_Prime_Video_logo.svg.png" style="width:48px;height:48px;object-fit:contain;background:#fff;border-radius:8px;padding:4px;"></div>
+          <div>
+            <div class="panel-head-title">Amazon Prime Video</div>
+            <div class="panel-head-sub">4K UHD · No Logout · No Screen Limits · Tap plan to order</div>
+          </div>
+          <div class="panel-head-badge">PRIME</div>
+        </div>
+        <div class="prime-plans">
+          <div class="prime-plan" onclick="buyItem('🎬 Amazon Prime Video', '1 Month Plan', 'RS 200')">
+            <div class="prime-duration">1 Month</div>
+            <div class="prime-price">RS 200</div>
+            <div class="prime-features">
+              <div class="prime-feature">4K UHD Quality</div>
+              <div class="prime-feature">No Logout</div>
+              <div class="prime-feature">No Screen Limits</div>
+              <div class="prime-feature">Single Device</div>
+            </div>
+            <div class="prime-tap">TAP TO ORDER</div>
+          </div>
+          <div class="prime-plan featured" onclick="buyItem('🎬 Amazon Prime Video', '6 Month Plan', 'RS 650')">
+            <div class="prime-duration">6 Months ⭐</div>
+            <div class="prime-price">RS 650</div>
+            <div class="prime-features">
+              <div class="prime-feature">4K UHD Quality</div>
+              <div class="prime-feature">No Logout</div>
+              <div class="prime-feature">No Screen Limits</div>
+              <div class="prime-feature">Single Device</div>
+            </div>
+            <div class="prime-tap">TAP TO ORDER</div>
+          </div>
+          <div class="prime-plan" onclick="buyItem('🎬 Amazon Prime Video', '12 Month Plan', 'RS 1,000')">
+            <div class="prime-duration">12 Months</div>
+            <div class="prime-price">RS 1,000</div>
+            <div class="prime-features">
+              <div class="prime-feature">4K UHD Quality</div>
+              <div class="prime-feature">No Logout</div>
+              <div class="prime-feature">No Screen Limits</div>
+              <div class="prime-feature">Single Device</div>
+            </div>
+            <div class="prime-tap">TAP TO ORDER</div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <button class="panel-footer-btn" onclick="window.open('https://api.whatsapp.com/send?phone=9779803289471','_blank')">💬 Order Prime Video on WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLE GIFT CARD TAB -->
+    <div class="tab-panel" id="tab-apple">
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-head-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/120px-Apple_logo_black.svg.png" style="width:40px;height:48px;object-fit:contain;filter:invert(1);"></div>
+          <div>
+            <div class="panel-head-title">Apple Gift Card</div>
+            <div class="panel-head-sub">US Region · Instant Delivery · Tap any card to order</div>
+          </div>
+          <div class="panel-head-badge">US REGION</div>
+        </div>
+        <div class="apple-grid">
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$5 USD', 'US Region')"><div class="a-amt">$5</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$10 USD', 'US Region')"><div class="a-amt">$10</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$20 USD', 'US Region')"><div class="a-amt">$20</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$40 USD', 'US Region')"><div class="a-amt">$40</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$60 USD', 'US Region')"><div class="a-amt">$60</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$80 USD', 'US Region')"><div class="a-amt">$80</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$100 USD', 'US Region')"><div class="a-amt">$100</div><div class="a-label">Tap to buy</div></div>
+          <div class="apple-card" onclick="buyItem('🍎 Apple Gift Card', '$200 USD', 'US Region')"><div class="a-amt">$200</div><div class="a-label">Tap to buy</div></div>
+        </div>
+        <div class="panel-footer">
+          <button class="panel-footer-btn" onclick="window.open('https://api.whatsapp.com/send?phone=9779803289471','_blank')">💬 Order Apple Gift Card on WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process" id="process">
+  <div class="section-header" style="margin-bottom:36px;">
+    <div class="section-tag" style="font-size:0.65rem;">Simple Process</div>
+    <h2 class="section-title" style="font-size:1.2rem;">How It <span>Works</span></h2>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Choose Product</div>
+      <div class="step-desc">Browse our catalog and pick what you need — UC, accounts, diamonds or subscriptions.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Contact Us</div>
+      <div class="step-desc">Reach us on WhatsApp at 9803289471. Tell us your order and get an instant price.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Make Payment</div>
+      <div class="step-desc">Pay securely via eSewa, Khalti, or bank transfer. Easy & trusted payment methods.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Get Delivered</div>
+      <div class="step-desc">Receive your account or UC instantly. We verify everything before delivery.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-header">
+    <div class="section-tag">Customer Reviews</div>
+    <h2 class="section-title">What Gamers <span>Say</span></h2>
+  </div>
+
+  <!-- VIDEO REVIEW -->
+  <div style="max-width:700px;margin:0 auto 48px;border-radius:12px;overflow:hidden;border:1px solid rgba(0,200,255,0.2);box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+    <div style="background:rgba(0,200,255,0.08);padding:12px 20px;border-bottom:1px solid rgba(0,200,255,0.15);display:flex;align-items:center;gap:10px;">
+      <span style="color:#00C8FF;font-size:1rem;">▶</span>
+      <span style="font-family:'Orbitron',monospace;font-size:0.8rem;color:#00C8FF;letter-spacing:1px;">VIDEO REVIEW</span>
+    </div>
+    <video controls style="width:100%;display:block;background:#000;max-height:420px;">
+      <source src="https://raw.githubusercontent.com/erickhuyrr/acn-gaming-store-/068442c942d4dff38c7ce4dc6cb686b4dd863eb0/reviews/WhatsApp%20Video%202026-03-04%20at%201.44.03%20PM.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- DYNAMIC MEDIA GRID -->
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;font-family:'Orbitron',monospace;font-size:0.75rem;color:#00C8FF;letter-spacing:2px;margin-bottom:24px;">📸 CUSTOMER REVIEW SCREENSHOTS</div>
+    <div id="review-images-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+      <div id="review-loading" style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0;">
+        <div style="font-size:1.5rem;margin-bottom:8px;">⏳</div>Loading reviews...
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9998;align-items:center;justify-content:center;cursor:zoom-out;padding:20px;">
+    <img id="lightbox-img" style="max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 0 60px rgba(0,200,255,0.2);object-fit:contain;">
+    <div onclick="closeLightbox()" style="position:fixed;top:20px;right:28px;color:#fff;font-size:2rem;cursor:pointer;z-index:9999;line-height:1;">✕</div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;">
+    <a href="https://g.page/r/CVBoKLzYkcgJEBM/review" target="_blank" class="btn-primary" style="display:inline-flex;">⭐ Leave a Google Review</a>
+  </div>
+</section>
+
+<script>
+const REPO   = 'erickhuyrr/acn-gaming-store-';
+const COMMIT = '068442c942d4dff38c7ce4dc6cb686b4dd863eb0';
+const RAW    = `https://raw.githubusercontent.com/${REPO}/${COMMIT}/reviews/`;
+const IMG_EXT = ['jpg','jpeg','png','gif','webp'];
+const VID_EXT = ['mp4','mov','webm'];
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.style.display = 'none';
+  document.getElementById('lightbox-img').src = '';
+}
+
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  lb.style.display = 'flex';
+}
+
+function makeCard(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  const url = file.download_url;
+  const grid = document.getElementById('review-images-grid');
+
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'border-radius:12px;overflow:hidden;border:1px solid rgba(0,200,255,0.15);background:rgba(10,18,32,0.9);transition:transform 0.2s,box-shadow 0.2s;position:relative;';
+  wrap.onmouseenter = () => { wrap.style.transform='translateY(-5px)'; wrap.style.boxShadow='0 14px 36px rgba(0,200,255,0.2)'; };
+  wrap.onmouseleave = () => { wrap.style.transform=''; wrap.style.boxShadow=''; };
+
+  if (IMG_EXT.includes(ext)) {
+    // badge for GIF
+    if (ext === 'gif') {
+      const badge = document.createElement('div');
+      badge.textContent = 'GIF';
+      badge.style.cssText = 'position:absolute;top:10px;right:10px;background:#00C8FF;color:#000;font-size:0.6rem;font-weight:900;padding:3px 9px;border-radius:3px;font-family:Orbitron,monospace;letter-spacing:1px;z-index:2;';
+      wrap.appendChild(badge);
+    }
+    const img = document.createElement('img');
+    img.src = url; img.loading = 'lazy';
+    img.style.cssText = 'width:100%;display:block;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in;';
+    img.onclick = () => openLightbox(url);
+    wrap.appendChild(img);
+
+  } else if (VID_EXT.includes(ext)) {
+    const badge = document.createElement('div');
+    badge.textContent = '▶ VIDEO';
+    badge.style.cssText = 'position:absolute;top:10px;right:10px;background:#FF2D55;color:#fff;font-size:0.6rem;font-weight:900;padding:3px 9px;border-radius:3px;font-family:Orbitron,monospace;letter-spacing:1px;z-index:2;';
+    wrap.appendChild(badge);
+    const vid = document.createElement('video');
+    vid.src = url; vid.controls = true;
+    vid.style.cssText = 'width:100%;display:block;aspect-ratio:4/3;object-fit:cover;background:#000;';
+    wrap.appendChild(vid);
+  }
+
+  // filename caption
+  const cap = document.createElement('div');
+  cap.style.cssText = 'padding:8px 14px;font-size:0.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-top:1px solid rgba(255,255,255,0.04);';
+  cap.textContent = file.name.replace(/\.[^.]+$/, '').replace(/[_-]/g, ' ');
+  wrap.appendChild(cap);
+  grid.appendChild(wrap);
+}
+
+(async function loadAllMedia() {
+  const grid   = document.getElementById('review-images-grid');
+  const loader = document.getElementById('review-loading');
+  let found = 0;
+
+  async function fetchFolder(path) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${COMMIT}`);
+      if (!res.ok) return;
+      const items = await res.json();
+      if (!Array.isArray(items)) return;
+      for (const item of items) {
+        if (item.type === 'dir') {
+          await fetchFolder(item.path); // recurse into subfolders
+        } else if (item.type === 'file') {
+          const ext = item.name.split('.').pop().toLowerCase();
+          if ([...IMG_EXT, ...VID_EXT].includes(ext)) {
+            if (found === 0) loader.remove();
+            found++;
+            makeCard(item);
+          }
+        }
+      }
+    } catch(e) {}
+  }
+
+  await fetchFolder('reviews');
+
+  if (found === 0) {
+    loader.innerHTML = '<div style="color:var(--muted);padding:20px;">No media files found. <a href="https://github.com/' + REPO + '/tree/' + COMMIT + '/reviews" target="_blank" style="color:#00C8FF;">View on GitHub →</a></div>';
+  }
+})();
+</script>
+
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-header">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Contact <span>ACN Store</span></h2>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h3>Let's Talk Gaming</h3>
+      <p>We're available on all major platforms. Drop us a message anytime — our team responds fast, especially on WhatsApp.</p>
+      <div class="contact-detail">
+        <div class="detail-icon">📞</div>
+        <div>
+          <div class="detail-label">Phone / WhatsApp</div>
+          <div class="detail-value">9803289471</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon">📍</div>
+        <div>
+          <div class="detail-label">Location</div>
+          <div class="detail-value">Lalitpur 44700, Nepal</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon">🕐</div>
+        <div>
+          <div class="detail-label">Available</div>
+          <div class="detail-value">24/7 · Always Online</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Orbitron',monospace; font-size:0.8rem; letter-spacing:2px; color:var(--muted); margin-bottom:16px; text-transform:uppercase;">Find Us On</div>
+      <div class="social-grid">
+        <a href="https://api.whatsapp.com/send?phone=9779803289471" target="_blank" class="social-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/120px-WhatsApp.svg.png" style="width:28px;height:28px;object-fit:contain;">
+          <div><div class="s-name">WhatsApp</div><div class="s-tag">Direct Order</div></div>
+        </a>
+        <a href="https://instagram.com/accountcheapnepal.acnstore" target="_blank" class="social-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/120px-Instagram_icon.png" style="width:28px;height:28px;object-fit:contain;border-radius:6px;">
+          <div><div class="s-name">Instagram</div><div class="s-tag">@accountcheapnepal.acnstore</div></div>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61567739967413" target="_blank" class="social-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/120px-2023_Facebook_icon.svg.png" style="width:28px;height:28px;object-fit:contain;">
+          <div><div class="s-name">Facebook</div><div class="s-tag">ACN Store</div></div>
+        </a>
+        <a href="https://tiktok.com/@acnstore.accountcheapnep" target="_blank" class="social-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/120px-TikTok_logo.svg.png" style="width:28px;height:28px;object-fit:contain;filter:invert(1);">
+          <div><div class="s-name">TikTok</div><div class="s-tag">@acnstore</div></div>
+        </a>
+        <a href="https://youtube.com/@AccountCheapNepalACNSTORE" target="_blank" class="social-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/120px-YouTube_full-color_icon_%282017%29.svg.png" style="width:28px;height:28px;object-fit:contain;">
+          <div><div class="s-name">YouTube</div><div class="s-tag">ACN STORE Channel</div></div>
+        </a>
+        <a href="https://maps.app.goo.gl/yhxjEPJNqnapNU159" target="_blank" class="social-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/120px-Google_Maps_Logo_2020.svg.png" style="width:28px;height:28px;object-fit:contain;">
+          <div><div class="s-name">Google Maps</div><div class="s-tag">Find Our Location</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="https://raw.githubusercontent.com/erickhuyrr/acn-gaming-store-/main/profilepic/WhatsApp%20Image%202026-03-04%20at%201.45.24%20PM.jpeg"
+    style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.3);margin-bottom:12px;"
+    onerror="this.style.display='none'">
+  <div class="footer-logo">ACN STOREᴺᴾ</div>
+  <div class="footer-tagline">AccountCheapNepal Pvt. Ltd. · Lalitpur, Nepal</div>
+  <div class="footer-links">
+    <a href="#products">Products</a>
+    <a href="#process">How It Works</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="https://api.whatsapp.com/send?phone=9779803289471" target="_blank">WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2024 <span>ACN Store</span> · AccountCheapNepal Pvt. Ltd. · All rights reserved. · Lalitpur 44700, Nepal</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://api.whatsapp.com/send?phone=9779803289471" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/120px-WhatsApp.svg.png" style="width:32px;height:32px;object-fit:contain;">
+</a>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-box">
+    <div class="modal-icon" id="modalIcon">🎮</div>
+    <div class="modal-game" id="modalGame"></div>
+    <div class="modal-item" id="modalItem"></div>
+    <div class="modal-price" id="modalPrice"></div>
+    <div class="modal-msg" id="modalMsg"></div>
+    <div class="modal-btns">
+      <button class="modal-confirm" id="modalConfirm">💬 Order on WhatsApp</button>
+      <button class="modal-cancel" onclick="closeModal()">✕ Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function buyItem(game, item, price) {
+    const icon = game.split(' ')[0];
+    const gameName = game.replace(icon, '').trim();
+    document.getElementById('modalIcon').textContent = icon;
+    document.getElementById('modalGame').textContent = gameName;
+    document.getElementById('modalItem').textContent = item;
+    document.getElementById('modalPrice').textContent = price;
+    document.getElementById('modalMsg').innerHTML =
+      'तपाईंले <strong style="color:var(--text)">' + item + '</strong> को लागि order गर्न लाग्नु भएको छ।<br>WhatsApp मा message पठाउनुस् — हामी तुरुन्त reply गर्छौं!';
+    const msg = encodeURIComponent(
+      'Hello ACN Store! 👋\n\nI want to buy:\n' +
+      '🎮 Game: ' + game + '\n' +
+      '💎 Item: ' + item + '\n' +
+      '💰 Price: ' + price + '\n\nPlease confirm availability. Thank you!'
+    );
+    document.getElementById('modalConfirm').onclick = function() {
+      window.open('https://api.whatsapp.com/send?phone=9779803289471&text=' + msg, '_blank');
+      closeModal();
+    };
+    document.getElementById('orderModal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('active');
+  }
+
+  document.getElementById('orderModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+
+</body>
+</html>
